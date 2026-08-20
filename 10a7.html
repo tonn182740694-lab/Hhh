@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Thành Viên 10A7</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #0d0d0d;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #question-box {
+            text-align: center;
+            background: rgba(20, 20, 20, 0.95);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 2px solid #ff3366;
+            box-shadow: 0 0 30px rgba(255, 51, 102, 0.5);
+            z-index: 50;
+            max-width: 90%;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #ff3366;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        #btn-yes {
+            background-color: #ff3366;
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 51, 102, 0.7);
+        }
+
+        #btn-no {
+            background-color: #333;
+            color: white;
+            box-shadow: 0 0 15px rgba(100, 100, 100, 0.5);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        #fairy-space {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #1a0033, #330033, #660033);
+            z-index: 20;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #praise-center {
+            position: absolute;
+            top: 12%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 35;
+            pointer-events: none;
+            width: 100%;
+        }
+
+        #praise-center h2 {
+            margin: 0;
+            font-size: 26px;
+            letter-spacing: 3px;
+            color: #ff3399;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px #ff0066, 0 0 30px #ff3399;
+        }
+
+        #credits-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 30;
+            pointer-events: none;
+        }
+
+        #credits-scroll {
+            position: absolute;
+            width: 100%;
+            top: 100%;
+            text-align: center;
+            color: #fff;
+            text-shadow: 0 0 8px #00ffff, 0 0 15px #ff3366;
+            animation: scrollUp 40s linear infinite;
+            will-change: top;
+        }
+
+        #credits-scroll h3 {
+            color: #ffd700;
+            font-size: 22px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 12px #ffd700;
+        }
+
+        #credits-scroll p {
+            font-size: 17px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        @keyframes scrollUp {
+            0% { top: 100%; }
+            100% { top: -160%; }
+        }
+
+        #scare-screen {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #500000;
+            z-index: 60;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #scare-screen h3 {
+            color: #fff;
+            font-size: 40px;
+            text-shadow: 0 0 20px #ff0000;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="question-box">
+        <h1>Bạn có yêu 10A7 không? ❤️</h1>
+        <div class="btn-container">
+            <button id="btn-yes" onclick="clickYes()">CÓ</button>
+            <button id="btn-no" onclick="clickNo()">KHÔNG</button>
+        </div>
+    </div>
+
+    <div id="fairy-space">
+        <div id="praise-center">
+            <h2>BẠN THẬT ĐẸP TRAI! 😎✨</h2>
+        </div>
+
+        <div id="credits-container">
+            <div id="credits-scroll">
+                <h3>✨ DANH SÁCH THÀNH VIÊN 10A7 ✨</h3>
+                <p>Chu Xuân Đạt</p>
+                <p>Nghiêm Đức Việt</p>
+                <p>Nguyễn Minh Toán</p>
+                <p>Ngô Minh Vân</p>
+                <p>Lê Minh Chiến</p>
+                <p>Nguyễn Huy Cường</p>
+                <p>Ngô Khánh Hòa</p>
+                <p>Kim Hồng Ngọc</p>
+                <p>Nguyễn Bảo Yến</p>
+                <p>Nguyễn Việt Long</p>
+                <p>Nguyễn Tiến Định</p>
+                <p>Nguyễn Thế Toàn</p>
+                <p>Trần Duy Long</p>
+                <p>Lê Thị Hồng Nhung</p>
+                <p>Phạm Gia Khánh</p>
+                <p>Nguyễn Đắc Tồn</p>
+                <p>Khổng Tiến Đạt</p>
+                <p>Ngô Xuân Hiếu</p>
+                <p>Phạm Hoàng Anh Vũ</p>
+                <p>Nguyễn Minh Quang</p>
+                <p>Nguyễn Thị Anh Thư</p>
+                <p>Khổng Thị Khánh Linh</p>
+                <p>Khổng Minh Thái</p>
+                <p>Nguyễn Khánh Vy</p>
+                <p>Hạ Mai Phương</p>
+                <p>Lương Thị Bảo Trang</p>
+                <p>Đỗ Văn Tùng</p>
+                <p>Nguyễn Văn Hiếu</p>
+                <p>Đỗ Thị Ngọc Khuê</p>
+                <p>Khổng Văn Sơn</p>
+                <p>Lê Phương Thúy</p>
+                <p>Nguyễn Gia Thịnh</p>
+                <p>Nguyễn Hoàng Bảo Minh</p>
+                <p>Nguyễn Thị Kiều Chinh</p>
+                <p>Kiều Đức Thiên Phú</p>
+                <p>Nguyễn Năng Đạt</p>
+                <p>Kim Thanh Chúc</p>
+                <p>Hoàng Khánh Toán</p>
+                <p>Nguyễn Thị Ngọc Diệp</p>
+                <p>Phạm Hồng Vỹ</p>
+                <p>Lê Văn Hứa</p>
+                <p>Phùng Lê An Phúc</p>
+                <p>Dương Văn Đông</p>
+                <p><br>🌟 CẢM ƠN BẠN ĐÃ ĐẾN VỚI 10A7 🌟</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="scare-screen">
+        <h3 style="font-size: 80px; margin: 0;">👻</h3>
+        <h3>DÁM NÓI KHÔNG HẢ?!</h3>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        function clickYes() {
+            document.getElementById('question-box').style.display = 'none';
+            document.getElementById('fairy-space').style.display = 'block';
+            initFairySpace();
+        }
+
+        function clickNo() {
+            document.getElementById('question-box').style.display = 'none';
+            document.getElementById('scare-screen').style.display = 'flex';
+        }
+
+        function initFairySpace() {
+            const container = document.getElementById('fairy-space');
+            const scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x220033, 0.015);
+
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: false });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            const heartGeometry = new THREE.BufferGeometry();
+            const heartPositions = [];
+            const heartColors = [];
+            const color = new THREE.Color();
+
+            for (let i = 0; i < 2500; i++) {
+                let t = Math.random() * Math.PI * 2;
+                let x = 16 * Math.pow(Math.sin(t), 3);
+                let y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
+                let z = (Math.random() - 0.5) * 6;
+
+                heartPositions.push(x * 1.3, y * 1.3, z * 1.3);
+                color.setHSL(Math.random() * 0.2 + 0.8, 1.0, 0.65);
+                heartColors.push(color.r, color.g, color.b);
+            }
+
+            heartGeometry.setAttribute('position', new THREE.Float32BufferAttribute(heartPositions, 3));
+            heartGeometry.setAttribute('color', new THREE.Float32BufferAttribute(heartColors, 3));
+
+            const heartMaterial = new THREE.PointsMaterial({
+                size: 0.6,
+                vertexColors: true,
+                blending: THREE.AdditiveBlending,
+                transparent: true,
+                opacity: 0.9
+            });
+
+            const heartSystem = new THREE.Points(heartGeometry, heartMaterial);
+            scene.add(heartSystem);
+
+            camera.position.z = 45;
+
+            let angle = 0;
+            function animate() {
+                requestAnimationFrame(animate);
+                angle += 0.004;
+                camera.position.x = Math.sin(angle) * 35;
+                camera.position.z = Math.cos(angle) * 35;
+                camera.lookAt(scene.position);
+
+                heartSystem.rotation.y += 0.006;
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+    </script>
+</body>
+  </html>
+  
